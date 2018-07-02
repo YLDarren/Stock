@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,  initial-scale=1.0 ">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>企业库存管理系统</title>
+</head>
+<body>
+<!--头部-->
+    <div class="header clearfix">
+        <div class="header-left left">企业库存管理系统</div>
+        <div class="header-right right">
+            <span class="user" id="user">浪迪</span>
+            <span class="user-welcome">欢迎你</span>
+            <span class="back" id="back">退出</span>
+        </div>
+    </div>
+<!--内容-->
+    <div class="content">
+        <!--功能列表-->
+        <div class="content-left">
+            <ul class="content-left-ul">
+                <li class="content-ul-li">
+                    功能列表
+                </li>
+                <li class="content-ul-li active" id="managerListLi">
+                    <p class="manager people">管理员</p>
+                    <!--管理员功能列表-->
+                    <ul class="manager-ul hide">
+                        <li class="manager-ul-li">零件维护</li>
+                        <li class="manager-ul-li" id="addStockParts">添加零件</li>
+                    </ul>
+                </li>
+                <li class="content-ul-li" id="buyerListLi">
+                    <p class="buyer people">采购员</p>
+                    <!--采购员功能列表-->
+                    <ul class="manager-ul hide">
+                        <li class="manager-ul-li">订货</li>
+                    </ul>
+                </li>
+                <li class="content-ul-li" id="employListLi">
+                    <p class="employ people">车间员工</p>
+                    <!--车间员工功能列表-->
+                    <ul class="manager-ul hide">
+                        <li class="manager-ul-li">取货</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--详情区-->
+        <div class="content-right">
+            <!--管理员的详情区-->
+            <div class="manager-content">
+                <!--上半部分 - 搜索框 -->
+                <div class="content-right-up">
+                    <ul class="clearfix wFont-search-ul">
+                        <li class="left search-ul-li">
+                            <label for="ManagerSearchById">编号:</label>
+                            <input type="text" id="ManagerSearchById" placeholder="按编号查询">
+                        </li>
+                        <li class="left search-ul-li">
+                            <label for="ManagerSearchByName">生产材料:</label>
+                            <input type="text" id="ManagerSearchByName" placeholder="按生产材料查询">
+                        </li>
+                        <li class="left search-ul-li">
+                            <label for="ManagerSearchByRemain">剩余:</label>
+                            <input type="text" id="ManagerSearchByRemain" placeholder="按剩余查询">
+                        </li>
+                        <li class="left search-ul-li">
+                            <label for="ManagerSearchByLimit">临界值:</label>
+                            <input type="text" id="ManagerSearchByLimit" placeholder="按临界值查询">
+                        </li>
+                        <li class="left search-ul-li">
+                            <label for="ManagerSearchByAppend">默认追加:</label>
+                            <input type="text" id="ManagerSearchByAppend" placeholder="按默认追加查询">
+                        </li>
+                        <li class="right search-ul-li">
+                            <input type="button" value="搜索" class="searchBtn" id="managerSearch">
+                        </li>
+                    </ul>
+                </div>
+                <!--下半部分 - 数据详情列表 -->
+                <div class="content-right-down">
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>编号</td>
+                            <td>生产材料</td>
+                            <td>总量</td>
+                            <td>剩余</td>
+                            <td>已用</td>
+                            <td>临界值</td>
+                            <td>追加</td>
+                            <td>默认追加</td>
+                            <td>状态</td>
+                            <td>操作</td>
+                            <td>执行</td>
+                        </tr>
+                        </thead>
+                        <tbody class="init ManagerSearch">
+                       <!-- <tr>
+                            <td>0001</td>
+                            <td>木材</td>
+                            <td>10000</td>
+                            <td>3000</td>
+                            <td>7000</td>
+                            <td>1000</td>
+                            <td>0</td>
+                            <td>3000</td>
+                            <td class="select">
+                                <select>
+                                    <option value="editor">编辑</option>
+                                    <option value="stop">停购</option>
+                                </select>
+                            </td>
+                            <td >
+                                <span class="confirm">确定</span>
+                            </td>
+                        </tr>  -->
+                        
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--采购员的详情区-->
+            <div class="buyer-content hide">
+                <!--上半部分 - 搜索框 -->
+                <div class="content-right-up">
+                    <ul class="clearfix wFont-search-ul">
+                        <li class="left search-ul-li">
+                            <label for="BuyerSearchById">编号:</label>
+                            <input type="text" id="BuyerSearchById" placeholder="按编号查询">
+                        </li>
+                        <li class="left search-ul-li">
+                            <label for="BuyerSearchByName">生产材料:</label>
+                            <input type="text" id="BuyerSearchByName" placeholder="按生产材料查询">
+                        </li>
+                        <li class="left search-ul-li">
+                            <label for="BuyerSearchByRemain">剩余:</label>
+                            <input type="text" id="BuyerSearchByRemain" placeholder="按剩余查询">
+                        </li>
+                        <li class="left search-ul-li">
+                            <label for="BuyerSearchByLimit">临界值:</label>
+                            <input type="text" id="BuyerSearchByLimit" placeholder="按临界值查询">
+                        </li>
+                        <li class="left search-ul-li">
+                            <label for="BuyerSearchByAppend">默认追加:</label>
+                            <input type="text" id="BuyerSearchByAppend" placeholder="按默认追加查询">
+                        </li>
+                        <li class="right search-ul-li">
+                            <input type="button" value="搜索" class="searchBtn" id="buyerSearch">
+                        </li>
+                    </ul>
+                </div>
+                <!--下半部分 - 数据详情列表 -->
+                <div class="content-right-down">
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>编号</td>
+                            <td>生产材料</td>
+                            <td>总量</td>
+                            <td>剩余</td>
+                            <td>已用</td>
+                            <td>临界值</td>
+                            <td>追加</td>
+                            <td>默认追加</td>
+                            <td>状态</td>
+                            <td>操作</td>
+                            <td>执行</td>
+                        </tr>
+                        </thead>
+                        <tbody class="init BuyerSearch">
+                        <!--  <tr>
+                            <td>0001</td>
+                            <td>木材</td>
+                            <td>10000</td>
+                            <td>3000</td>
+                            <td>7000</td>
+                            <td>1000</td>
+                            <td>0</td>
+                            <td>3000</td>
+                            <td class="select">
+                                <select>
+                                    <option value="buy">采购</option>
+                                </select>
+                            </td>
+                            <td >
+                                <span class="confirm">确定</span>
+                            </td>
+                        </tr>-->
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--车间工人的详情区-->
+            <div class="employ-content hide">
+                <!--上半部分 - 搜索框 -->
+                <div class="content-right-up">
+                    <ul class="clearfix wFont-search-ul">
+                        <li class="left search-ul-li">
+                            <label for="EmploySearchById">编号:</label>
+                            <input type="text" id="EmploySearchById" placeholder="按编号查询">
+                        </li>
+                        <li class="left search-ul-li">
+                            <label for="EmploySearchByName">生产材料:</label>
+                            <input type="text" id="EmploySearchByName" placeholder="按生产材料查询">
+                        </li>
+                        <li class="left search-ul-li">
+                            <label for="EmploySearchByRemain">剩余:</label>
+                            <input type="text" id="EmploySearchByRemain" placeholder="按剩余查询">
+                        </li>
+                        <li class="left search-ul-li">
+                            <label for="EmploySearchByLimit">临界值:</label>
+                            <input type="text" id="EmploySearchByLimit" placeholder="按临界值查询">
+                        </li>
+                        <li class="left search-ul-li">
+                            <label for="EmploySearchByAppend">默认追加:</label>
+                            <input type="text" id="EmploySearchByAppend" placeholder="按默认追加查询">
+                        </li>
+                        <li class="right search-ul-li">
+                            <input type="button" value="搜索" class="searchBtn" id="employSearch">
+                        </li>
+                    </ul>
+                </div>
+                <!--下半部分 - 数据详情列表 -->
+                <div class="content-right-down">
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>编号</td>
+                            <td>生产材料</td>
+                            <td>总量</td>
+                            <td>剩余</td>
+                            <td>已用</td>
+                            <td>临界值</td>
+                            <td>追加</td>
+                            <td>默认追加</td>
+                            <td>状态</td>
+                            <td>操作</td>
+                            <td>执行</td>
+                        </tr>
+                        </thead>
+                        <tbody class="init EmploySearch">
+                        
+                        <!--  <tr>
+                            <td>0001</td>
+                            <td>木材</td>
+                            <td>10000</td>
+                            <td>3000</td>
+                            <td>7000</td>
+                            <td>1000</td>
+                            <td>0</td>
+                            <td>3000</td>
+                            <td class="select">
+                                <select>
+                                    <option value="extract">提取</option>
+                                </select>
+                            </td>
+                            <td >
+                                <span class="confirm">确定</span>
+                            </td>
+                        </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<!--操作界面-->
+    <div class="operation hide">
+        <!--管理员-->
+        <div class="operation-manager hide">
+            <table>
+                <thead>
+                    <tr>
+                        <td>编号</td>
+                        <td>生产材料</td>
+                        <td>剩余</td>
+                        <td>临界值</td>
+                        <td>追加</td>
+                        <td>默认追加</td>
+                    </tr>
+                </thead>
+                <tbody id="managerOperationEditor">
+                <!--  
+                    <tr>
+                        <td class="disabled">0001</td>
+                        <td class="disabled">木材</td>
+                        <td class="disabled">3000</td>
+                        <td>
+                            <input type="text" name="limit" id="managerOperationLimit" placeholder="12" />
+                        </td>
+                        <td>
+                            <input type="text" name="append" id="managerOperationAppend" placeholder="13" />
+                        </td>
+                        <td>
+                            <input type="text" name="defaultAppend" id="managerOperationDefaultAppend" placeholder="14" />
+                        </td>
+                    </tr>-->
+                </tbody>
+            </table>
+            <div class="operation-box" id="ManagerOperation">
+                <button class="operation-confirm operationButton">确定</button>
+                <button class="operation-back operationButton">返回</button>
+            </div>
+
+        </div>
+        
+        <!--管理员添加零件-->
+        <div class="add-manager hide">
+            <table>
+                <thead>
+                <tr>
+                    <td>编号</td>
+                    <td>生产材料</td>
+                    <td>总量</td>
+                    <td>临界值</td>
+                    <td>默认追加</td>
+                    <td>数量</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <input type="text" name="limit" id="managerAddNumber" placeholder="10000001" />
+                    </td>
+                    <td>
+                        <input type="text" name="limit" id="managerAddMaterial" placeholder="木材" />
+                    </td>
+                    <td>
+                        <input type="text" name="limit" id="managerAddTotal" placeholder="10000" />
+                    </td>
+                    <td>
+                        <input type="text" name="limit" id="managerAddLimit" placeholder="1000" />
+                    </td>
+                    <td>
+                        <input type="text" name="append" id="managerAddDefaultAppend" placeholder="2000" />
+                    </td>
+                    <td>
+                        1
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="operation-box">
+                <button class="operation-confirm" id="addConfirm">确定</button>
+                <button class="operation-back" id="addBack">返回</button>
+            </div>
+
+        </div>
+        
+        <!--采购员-->
+        <div class="operation-buyer hide">
+            <table>
+                <thead>
+                <tr>
+                    <td>编号</td>
+                    <td>生产材料</td>
+                    <td>剩余</td>
+                    <td>临界值</td>
+                    <td>追加</td>
+                    <td>采购</td>
+                </tr>
+                </thead>
+                <tbody id="OperationBuy">
+                <!--  
+                <tr>
+                    <td class="disabled">0001</td>
+                    <td class="disabled">木材</td>
+                    <td class="disabled">3000</td>
+                    <td class="disabled">
+                        1000
+                    </td>
+                    <td class="disabled">
+                        3000
+                    </td>
+                    <td>
+                        <input type="text" name="buy" id="buyerOperationBuy" placeholder="14" />
+                    </td>
+                </tr>-->
+                </tbody>
+            </table>
+            <div class="operation-box" id="BuyerOperation">
+                <button class="operation-confirm operationButton">确定</button>
+                <button class="operation-back operationButton">返回</button>
+            </div>
+        </div>
+        <!--车间员-->
+        <div class="operation-employ hide">
+            <table>
+                <thead>
+                <tr>
+                    <td>编号</td>
+                    <td>生产材料</td>
+                    <td>剩余</td>
+                    <td>已使用</td>
+                    <td>提取</td>
+                    <td>还需</td>
+                </tr>
+                </thead>
+                <tbody id="OperationNeed">
+                <!--  
+                <tr>
+                    <td class="disabled">0001</td>
+                    <td class="disabled">木材</td>
+                    <td class="disabled">3000</td>
+                    <td class="disabled">
+                        1000
+                    </td>
+                    <td>
+                        <input type="text" name="extract" id="employOperationExtract" placeholder="13" />
+                    </td>
+                    <td>
+                        <input type="text" name="need" id="employrOperationNeed" placeholder="14" />
+                    </td>
+                </tr>-->
+                </tbody>
+            </table>
+            <div class="operation-box" id="EmployOperation">
+                <button class="operation-confirm operationButton">确定</button>
+                <button class="operation-back operationButton">返回</button>
+            </div>
+        </div>
+    </div>
+<!--底部-->
+    <div class="footer">
+        Copyright@浪迪
+    </div>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/common.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

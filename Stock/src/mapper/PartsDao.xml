@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.njupt.dao.PartsDao">
+	
+	<!-- 根据id查询库存零件 -->
+	<select id="queryById" resultType="cn.edu.njupt.bean.StockParts">
+		select * from stock_parts 
+		where parts_id = #{partsId} and parts_active = 1
+	</select>
+	
+	<!-- 根据库存编号查询单个零件 -->
+	<select id="queryByNumber" resultType="cn.edu.njupt.bean.StockParts">
+		select * from stock_parts 
+		where parts_number = #{partsNumber} and parts_active = 1
+	</select>
+	
+	<!-- 车间员工根据编号查询单个零件 -->
+	<select id="employQueryByNumber" resultType="cn.edu.njupt.bean.StockParts">
+		select * from stock_parts 
+		where parts_number = #{partsNumber} and ( parts_active = 1 or parts_remain > 0)
+	</select>
+	
+	<!-- 采购员根据编号查询单个零件 -->
+	<select id="buyerQueryByNumber" resultType="cn.edu.njupt.bean.StockParts">
+		select * from stock_parts 
+		where parts_number = #{partsNumber} and ( parts_active = 1 or parts_append > 0)
+	</select>
+	
+	<!-- 根据条件类查询零件 -->
+	<select id="queryBySearch" parameterType="cn.edu.njupt.bean.SearchParts" resultType="cn.edu.njupt.bean.StockParts">
+		select * from stock_parts 
+		where 1 = 1 and (parts_active = 1 or  parts_remain > 0) 
+		<if test="partsNumber != null">and parts_number = #{partsNumber}</if>
+		<if test="partsMaterial != null">and parts_material = #{partsMaterial}</if>
+		<if test="partsRemain != null">and parts_remain = #{partsRemain}</if>
+		<if test="partsLimit != null">and parts_limit = #{partsLimit}</if>
+		<if test="partsDefaultAppend != null">and parts_default_append = #{partsDefaultAppend}</if>
+	</select>
+	
+	<!-- 查询所有的零件(只要有库存或者parts_active=1都可查询) -->
+	<select id="queryAll" resultType="cn.edu.njupt.bean.StockParts">
+		select * from stock_parts where parts_active = 1 or  parts_remain > 0 or parts_append > 0
+	</select>
+	
+	<!-- 添加一个零件 -->
+	<insert id="insertStockParts" parameterType="cn.edu.njupt.bean.StockParts">
+		insert into stock_parts
+			(parts_number,parts_material,parts_total,parts_remain,parts_limit,parts_default_append,parts_active)
+		values
+			(#{partsNumber},#{partsMaterial},#{partsTotal},#{partsTotal},#{partsLimit},#{partsDefaultAppend},1)
+	</insert>
+	
+	<!-- 根据零件编号，更新库存(跟零件停不停购没有关系) -->
+	<update id="updateStock" parameterType="cn.edu.njupt.bean.StockParts">
+		update stock_parts set 
+			parts_total = #{partsTotal},
+			parts_remain = #{partsRemain},
+			parts_used = #{partsUsed},
+			parts_append = #{partsAppend}
+		where parts_number = #{partsNumber}
+	</update>
+	
+	<!-- 根据零件编号，更新追加(管理员手动追加,一旦停购不能再手动添加,只能根据消息命令通知采购员追加) -->
+	<update id="managerUpdateAppend">
+		update stock_parts set
+			parts_append = parts_append + #{partsAppend}
+		where parts_number = #{partsNumber} and parts_active = 1
+	</update>
+	
+	<!-- 根据编号，更新追加(采购员,一般都是减) -->
+	<update id="employUpdateAppend">
+		update stock_parts set
+			parts_append = parts_append + #{partsAppend}
+		where parts_number = #{partsNumber}
+	</update>
+	
+	<!-- 根据零件编号，停购某零件 -->
+	<update id="updateStopStock">
+		update stock_parts set 
+			parts_active = 0
+		where parts_number = #{partsNumber}
+	</update>
+	
+	<!-- 根据零件编号，更改临界值(parts_active必须为1) -->
+	<update id="updateStockLimit">
+		update stock_parts set 
+			parts_limit = #{partsLimit}
+		where parts_number = #{partsNumber} and parts_active = 1
+	</update>
+	
+	<!-- 根据零件编号，更改默认追加(parts_active必须为1) -->
+	<update id="updateStockDefaultAppend">
+		update stock_parts set 
+			parts_default_append = #{partsDefaultAppend}
+		where parts_number = #{partsNumber} and parts_active = 1
+	</update>
+	
+	<!-- 根据零件编号，更改临界值和默认追加(parts_active必须为1) -->
+	<update id="updateStockLimitDefaultAppend">
+		update stock_parts set 
+			parts_limit = #{partsLimit},
+			parts_default_append = #{partsDefaultAppend}
+		where parts_number = #{partsNumber} and parts_active = 1
+	</update>
+	
+	
+</mapper>
