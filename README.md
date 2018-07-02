@@ -13,6 +13,8 @@
 4)车间工人登录系统，预定某零件或材料的提取数量，预定后库存数量实时更新。
 
 大概的样式如下图，因为功能并没有太多，就用了两个页面
+![登陆页面](https://github.com/YLDarren/Stock/blob/master/img/login.png)
+![操作界面](https://github.com/YLDarren/Stock/blob/master/img/operate.png)
 
 思路：
 	
