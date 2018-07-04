@@ -194,6 +194,33 @@
     color: #8f88fd;
     cursor: pointer;
 }
+/*消息样式*/
+.buyer-content-msg {
+	display: none;
+	width: 320px;
+    height: 168px;
+    border: 1px solid #eee;
+	padding: 10px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+	overflow: auto;
+}
+.msg-line {
+	background-color: #e8e8e8;
+    margin: 12px auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 6px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+	color: #868686;
+}
 /*操作界面*/
 .operation {
     position: fixed;

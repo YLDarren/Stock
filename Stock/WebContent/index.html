@@ -128,6 +128,11 @@
             </div>
             <!--采购员的详情区-->
             <div class="buyer-content hide">
+            	<!--上半部分 消息框-->
+                <div class="buyer-content-msg">
+                    <!--  <div class="msg-line">小小细小消息雄安喜兄爱心雄安雄安的下oddsi西欧的基地啊</div>-->
+					
+                </div>
                 <!--上半部分 - 搜索框 -->
                 <div class="content-right-up">
                     <ul class="clearfix wFont-search-ul">
@@ -433,10 +438,27 @@
     <div class="footer">
         Copyright@浪迪
     </div>
-
+    
+<script type="text/javascript" src="js/dwr/engine.js"></script>
+<script type="text/javascript" src="js/dwr/util.js"></script>
+<script type="text/javascript" src="js/dwr/interface/DwrPush.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/common.js"></script>
 <script src="js/index.js"></script>
+<script >
+$(document).ready(function(){
+    //激活反转
+    dwr.engine.setActiveReverseAjax(true);
+});
+
+function callback(msg){
+	var level = $.cookie("level");
+	if(level === "2"){
+		$(".buyer-content-msg").append('<div class="msg-line">'+msg+'</div>').fadeIn("slow");
+	}
+    
+}
+</script>
 </body>
 </html>

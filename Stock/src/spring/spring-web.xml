@@ -46,7 +46,7 @@
 			<mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/font/*" />
 			<mvc:exclude-mapping path="/css/*" />
-			<mvc:exclude-mapping path="/js/*" />
+			<mvc:exclude-mapping path="/js/**" />
 			<mvc:exclude-mapping path="/img/*" />
 			<bean class="cn.edu.njupt.filter.LoginInterceptor"></bean>
 		</mvc:interceptor>

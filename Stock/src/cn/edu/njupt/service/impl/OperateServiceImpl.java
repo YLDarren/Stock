@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import cn.edu.njupt.bean.StockOperate;
 import cn.edu.njupt.bean.StockParts;
 import cn.edu.njupt.bean.StockUser;
+import cn.edu.njupt.dao.MsgDao;
 import cn.edu.njupt.dao.OperateDao;
 import cn.edu.njupt.dao.PartsDao;
 import cn.edu.njupt.dao.UserDao;
@@ -26,6 +27,9 @@ public class OperateServiceImpl implements OperateService{
 	
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private MsgDao msgDao;
 	
 	/**
 	 * 管理员根据零件编号更改临界值
@@ -160,6 +164,7 @@ public class OperateServiceImpl implements OperateService{
 			int appendSuccess = partsDao.managerUpdateAppend(stockParts.getPartsNumber() , partsAppend );
 			if(appendSuccess > 0) {
 				//更新零件表中的追加字段成功
+				
 				return 1;
 			}else {
 				//产生一条管理员操作信息成功，更新零件表中的追加字段失败
@@ -339,8 +344,9 @@ public class OperateServiceImpl implements OperateService{
 		int updateSuccess = partsDao.updateStock(stockParts);
 		
 		if(updateSuccess > 0) {
-			//更改库存成功,把管理员产生的所有追加消息标记为已执行
-			int operateSuccess = operateDao.updateByManager();
+			
+			//更改库存成功,把管理员产生的所有追加消息标记为已执行(该编号零件追加的消息)
+			int operateSuccess = msgDao.updateActive(partsNumber);
 			if(operateSuccess > 0) {
 				//更改库存成功,且把管理员产生的所有追加消息标记为已执行成功
 				return 1;

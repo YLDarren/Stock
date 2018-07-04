@@ -14,12 +14,14 @@ $.extend({
 		default:
 			option = "";
 		}
+		
 		return {
 			"option" : option,
 			"manager" : ".manager-content",
 			"buyer" : ".buyer-content",
 			"employ" : ".employ-content"
 		}
+		
 	},
 	// 具体操作模态框对应
 	methodBox : function(people) {
@@ -63,7 +65,7 @@ $.extend({
 	            return $.searchData("Employ");
 		}
 	},
-	// 弹出详情操作界面(还没加渲染数据)
+	// 弹出详情操作界面
 	showContent : function(option , level) {
 		if (option == null || option == "") {
 			return;
@@ -315,6 +317,7 @@ $.extend({
                 '                            <td>'+data[i].partsLimit+'</td>' +
                 '                            <td>'+data[i].partsAppend+'</td>' +
                 '                            <td>'+data[i].partsDefaultAppend+'</td>' +
+                '                            <td>'+data[i].partsActive+'</td>' +
                 '                            <td class="select">' +
                 '                                <select>' +
                 '                                    <option value="editor">编辑</option>' +
@@ -342,6 +345,7 @@ $.extend({
                 '                            <td>'+data[i].partsLimit+'</td>' +
                 '                            <td>'+data[i].partsAppend+'</td>' +
                 '                            <td>'+data[i].partsDefaultAppend+'</td>' +
+                '                            <td>'+data[i].partsActive+'</td>' +
                 '                            <td class="select">' +
                 '                                <select>' +
                 '                                    <option value="buy">采购</option>' +
@@ -367,6 +371,7 @@ $.extend({
                 '                            <td>'+data[i].partsLimit+'</td>' +
                 '                            <td>'+data[i].partsAppend+'</td>' +
                 '                            <td>'+data[i].partsDefaultAppend+'</td>' +
+                '                            <td>'+data[i].partsActive+'</td>' +
                 '                            <td class="select">' +
                 '                                <select>' +
                 '                                   <option value="extract">提取</option>' +
@@ -460,6 +465,9 @@ $.extend({
            },
            success: function(data){
         	   if(data.success === true){
+        		   if(append !== ""){
+        			   DwrPush.send("管理员又追加编号为\""+number + "\"" + append +"件啦，赶紧更新吧！");
+        		   }
                    alert(data.data);
                }else{
                    alert(data.reason);

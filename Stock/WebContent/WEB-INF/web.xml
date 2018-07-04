@@ -29,4 +29,30 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+    <servlet-name>dwr</servlet-name>
+    <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+    <init-param>
+    <!-- 使用服务器反转AJAX  -->
+    	<param-name>activeReverseAjaxEnabled</param-name>
+    	<param-value>true</param-value>
+    </init-param>
+    <init-param>
+    <!-- 是能够从其他域请求true：开启； false：关闭 -->
+    	<param-name>crossDomainSessionSecurity</param-name>
+    	<param-value>false</param-value>
+    </init-param>
+    <init-param>
+    	<!-- 允许远程调用js -->
+    	<param-name>allowScriptTagRemoting</param-name>
+    	<param-value>true</param-value>
+    </init-param>
+    
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>dwr</servlet-name>
+      <url-pattern>/js/dwr/*</url-pattern>
+  </servlet-mapping>
+	
 </web-app>

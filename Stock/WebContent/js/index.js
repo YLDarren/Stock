@@ -1,9 +1,40 @@
 $(document).ready(function(){
+	
 	 var username = $.cookie("username");
 	 var level = $.cookie("level");
 	 //根据cookie显示不同的内容
 	 $.initContentByCookie(username , level);
 	
+	 //加载追加消息
+	 if(level === "2"){
+		 //加载追加消息
+	        $.ajax({
+	            url: "/Stock/initMsg",
+	            type: "POST",
+	            dataType: "json",
+	            data:{},
+	            success: function(data){
+	            	if(data.success === true){
+	                    data = data.data;
+	                    var html = "";
+	                    var people = "";
+	                    for(var i = 0 ; i < data.length ; i++){
+	                        people = people === "3" ? "车间员工" : "管理员";
+	                        html += '<div class="msg-line">'+people+data[i].userName+'追加'+data[i].partsMaterial+'编号为"'+data[i].partsNumber+'"的零件'+data[i].operateAdd+'件，'+
+	                        	'请相同的零件一同操作</div>';
+	                    }
+	                    $(".buyer-content-msg").html(html).fadeIn("slow");
+	                    
+	                }
+	            },
+	            error: function(error){
+	                console.log("error");
+	                console.log(error);
+	            }
+	        })
+	 }
+	    
+	 
     //绑定退出事件
     $("#back").on("click" , function(){
     	$.ajax({
