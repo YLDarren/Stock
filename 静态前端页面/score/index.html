@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生成绩管理系统</title>
+    <meta name="viewport"
+          content="width=device-width,  initial-scale=1.0 ">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+<!--头部-->
+<div class="header clearfix">
+    <div class="header-left left">学生成绩管理系统</div>
+    <div class="header-right right">
+        <span class="user">用户</span>
+        <span class="user-welcome">欢迎你</span>
+        <span class="back" id="back">退出</span>
+    </div>
+</div>
+<!--内容-->
+<div class="content">
+    <!-- 左边区域 -->
+    <div class="content-left">
+        <ul class="content-left-ul">
+            <li class="content-ul-li">
+                功能列表
+            </li>
+            <li class="content-ul-li active">
+                <p class="manager score">成绩录入</p>
+                <!--成绩录入功能列表-->
+                <ul class="manager-ul hide">
+                    <li class="manager-ul-li">成绩维护</li>
+                    <li class="manager-ul-li">添加</li>
+                </ul>
+            </li>
+            <li class="content-ul-li">
+                <p class="buyer score">成绩查询</p>
+                <!--成绩查询功能列表-->
+                <ul class="manager-ul hide">
+                    <li class="manager-ul-li">考试成绩</li>
+                    <li class="manager-ul-li">考试排名</li>
+                </ul>
+            </li>
+            <li class="content-ul-li">
+                <p class="employ score">成绩统计</p>
+                <!--成绩统计工功能列表-->
+                <ul class="manager-ul hide">
+                    <li class="manager-ul-li">课程</li>
+                    <li class="manager-ul-li">学号</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- 右边区域 -->
+    <div class="content-right">
+        <!--成绩录入的详情区-->
+        <div class="manager-content">
+            <!--上半部分 - 搜索框 -->
+            <div class="content-right-up hide manager-maintain">
+                <ul class="clearfix wFont-search-ul">
+                    <li class="left search-ul-li">
+                        <label for="ManagerSearchById">学号:</label>
+                        <input type="text" id="ManagerSearchById" placeholder="按学号查询">
+                    </li>
+                    <li class="left search-ul-li">
+                        <label for="ManagerSearchByName">班级编号:</label>
+                        <input type="text" id="ManagerSearchByName" placeholder="按班级编号查询">
+                    </li>
+                    <li class="left search-ul-li">
+                        <label for="ManagerSearchByStudentName">学生姓名:</label>
+                        <input type="text" id="ManagerSearchByStudentName" placeholder="按学生姓名查询">
+                    </li>
+                    <li class="left search-ul-li">
+                        <label for="ManagerSearchByLesson">课程名:</label>
+                        <input type="text" id="ManagerSearchByLesson" placeholder="按课程名查询">
+                    </li>
+                    <li class="left search-ul-li">
+                        <label for="ManagerSearchByScore">学分:</label>
+                        <input type="text" id="ManagerSearchByScore" placeholder="按学分查询">
+                    </li>
+                    <li class="right search-ul-li">
+                        <input type="button" value="搜索" class="searchBtn" id="maintainSearch">
+                    </li>
+                </ul>
+            </div>
+            <!--下半部分 - 数据详情列表 -->
+            <div class="content-right-down hide manager-maintain">
+                <table>
+                    <thead>
+                    <tr>
+                        <td>学生学号</td>
+                        <td>班级</td>
+                        <td>姓名</td>
+                        <td>课程名</td>
+                        <td>课程编号</td>
+                        <td>学分</td>
+                        <td>成绩</td>
+                        <td>操作</td>
+                        <td>执行</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>B10001</td>
+                        <td>A001</td>
+                        <td>小明</td>
+                        <td>高数</td>
+                        <td class="lessonNumber">C10001</td>
+                        <td>5</td>
+                        <td>79</td>
+                        <td class="select">
+                            <select>
+                                <option value="editor">编辑</option>
+                                <option value="delete">删除</option>
+                            </select>
+                        </td>
+                        <td >
+                            <span class="confirm">确定</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B10001</td>
+                        <td>A001</td>
+                        <td>小明</td>
+                        <td>高数</td>
+                        <td class="lessonNumber">C10001</td>
+                        <td>5</td>
+                        <td>79</td>
+                        <td class="select">
+                            <select>
+                                <option value="editor">编辑</option>
+                                <option value="delete">删除</option>
+                            </select>
+                        </td>
+                        <td >
+                            <span class="confirm">确定</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--下半部分 - 添加数据详情列表-->
+            <div class="content-right-down hide manager-add">
+                <table>
+                    <thead>
+                    <tr>
+                        <td>学生学号</td>
+                        <td>班级</td>
+                        <td>姓名</td>
+                        <td>课程名</td>
+                        <td>课程编号</td>
+                        <td>学分</td>
+                        <td>成绩</td>
+                        <td>操作</td>
+                        <td>执行</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" id="studentNumber" placeholder="B10001">
+                        </td>
+                        <td>
+                            <input type="text" id="studentClass" placeholder="A001">
+                        </td>
+                        <td>
+                            <input type="text" id="studentName" placeholder="小明">
+                        </td>
+                        <td>
+                            <input type="text" id="studentLesson" placeholder="高数">
+                        </td>
+                        <td>
+                            <input type="text" id="studentLessonNumber" placeholder="C10001">
+                        </td>
+                        <td>
+                            <input type="text" id="studentCredit" placeholder="学分">
+                        </td>
+                        <td>
+                            <input type="text" id="studentScore" placeholder="成绩">
+                        </td>
+                        <td>
+                            添加
+                        </td>
+                        <td >
+                            <span class="confirm" id="addScore">确定</span>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--成绩查询的详情区-->
+        <div class="buyer-content hide">
+            <!--上半部分 - 搜索框 - 用于考试成绩-->
+            <div class="content-right-up buyer-score hide">
+                <ul class="clearfix wFont-search-ul">
+                    <li class="left search-ul-li">
+                        <label for="querySearchById">学号:</label>
+                        <input type="text" id="querySearchById" placeholder="按学号查询">
+                    </li>
+                    <li class="left search-ul-li">
+                        <label for="querySearchByName">班级编号:</label>
+                        <input type="text" id="querySearchByName" placeholder="按班级编号查询">
+                    </li>
+                    <li class="left search-ul-li">
+                        <label for="querySearchByRemain">学生姓名:</label>
+                        <input type="text" id="querySearchByRemain" placeholder="按学生姓名查询">
+                    </li>
+                    <li class="left search-ul-li">
+                        <label for="querySearchByLimit">课程名:</label>
+                        <input type="text" id="querySearchByLimit" placeholder="按课程名查询">
+                    </li>
+                    <li class="left search-ul-li">
+                        <label for="querySearchByAppend">学分:</label>
+                        <input type="text" id="querySearchByAppend" placeholder="按学分查询">
+                    </li>
+                    <li class="right search-ul-li">
+                        <input type="button" value="搜索" class="searchBtn" id="scoreSearch">
+                    </li>
+                </ul>
+            </div>
+            <!--上半部分 - 搜索框 - 用于考试排名-->
+            <div class="content-right-up buyer-sort hide">
+                <ul class="clearfix wFont-search-ul">
+                    <li class="left search-ul-li">
+                        <label for="sortSearchById">学号:</label>
+                        <input type="text" id="sortSearchById" placeholder="按学号查询">
+                    </li>
+                    <li class="left search-ul-li">
+                        <label for="sortSearchByName">课程编号:</label>
+                        <input type="text" id="sortSearchByName" placeholder="按单门课程查询">
+                    </li>
+                    <li class="left search-ul-li">
+                        <label for="sortSearchByRemain">学生姓名:</label>
+                        <input type="text" id="sortSearchByRemain" placeholder="按学生姓名查询">
+                    </li>
+                    <li class="left search-ul-li">
+                        <label for="sortSearchByLimit">平均分:</label>
+                        <input type="text" id="sortSearchByLimit" placeholder="按所有课程平均分查询" disabled>
+                    </li>
+                    <li class="left search-ul-li">
+                        <label for="sortSearchByAppend">课名:</label>
+                        <input type="text" id="sortSearchByAppend" placeholder="按课名查询">
+                    </li>
+                    <li class="right search-ul-li">
+                        <input type="button" value="搜索" class="searchBtn" id="sortSearch">
+                    </li>
+                </ul>
+            </div>
+            <!--下半部分 - 数据详情列表 -->
+            <div class="content-right-down">
+                <table>
+                    <thead>
+                    <tr>
+                        <td>学生学号</td>
+                        <td>班级</td>
+                        <td>姓名</td>
+                        <td>课程名</td>
+                        <td>课程编号</td>
+                        <td>学分</td>
+                        <td>成绩</td>
+                        <td>操作</td>
+                        <td>执行</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>B10001</td>
+                        <td>A001</td>
+                        <td>小明</td>
+                        <td>高数</td>
+                        <td class="lessonNumber">C10001</td>
+                        <td>5</td>
+                        <td>79</td>
+                        <td class="select">
+                            <select>
+                                <option value="editor">编辑</option>
+                                <option value="delete">删除</option>
+                            </select>
+                        </td>
+                        <td >
+                            <span class="confirm">确定</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B10001</td>
+                        <td>A001</td>
+                        <td>小明</td>
+                        <td>高数</td>
+                        <td class="lessonNumber">C10001</td>
+                        <td>5</td>
+                        <td>79</td>
+                        <td class="select">
+                            <select>
+                                <option value="editor">编辑</option>
+                                <option value="delete">删除</option>
+                            </select>
+                        </td>
+                        <td >
+                            <span class="confirm">确定</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--成绩统计的详情区-->
+        <div class="employ-content hide">
+            <!-- 按课程统计 - 数据详情列表 -->
+            <div class="content-right-down employ-lesson hide">
+                <table>
+                    <thead>
+                    <tr>
+                        <td>班级</td>
+                        <td>课程编号</td>
+                        <td>课程名</td>
+                        <td>平均分</td>
+                        <td>最高分</td>
+                        <td>最低分</td>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>B10001</td>
+                        <td>A001</td>
+                        <td>小明</td>
+                        <td>高数</td>
+                        <td>C10001</td>
+                        <td>5</td>
+
+                    </tr>
+                    <tr>
+                        <td>B10001</td>
+                        <td>A001</td>
+                        <td>小明</td>
+                        <td>高数</td>
+                        <td>C10001</td>
+                        <td>5</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 按学号统计 - 数据详情列表 -->
+            <div class="content-right-down employ-number hide">
+                <table>
+                    <thead>
+                    <tr>
+                        <td>学号</td>
+                        <td>姓名</td>
+                        <td>班级</td>
+                        <td>平均分</td>
+                        <td>最高分</td>
+                        <td>最低分</td>
+                        <td>挂科门数</td>
+                        <td>总学分</td>
+                        <td>欠学分</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>B10001</td>
+                        <td>A001</td>
+                        <td>小明</td>
+                        <td>高数</td>
+                        <td>C10001</td>
+                        <td>5</td>
+                        <td>79</td>
+                        <td>10</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>B10001</td>
+                        <td>A001</td>
+                        <td>小明</td>
+                        <td>高数</td>
+                        <td>C10001</td>
+                        <td>5</td>
+                        <td>79</td>
+                        <td>10</td>
+                        <td>3</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- 操作界面 - 模态框 -->
+<div class="operation hide">
+    <!--管理员-->
+    <div class="operation-manager">
+        <table>
+            <thead>
+            <tr>
+                <td>学生学号</td>
+                <td>班级</td>
+                <td>姓名</td>
+                <td>课程名</td>
+                <td>课程编号</td>
+                <td>学分</td>
+                <td>成绩</td>
+            </tr>
+            </thead>
+            <tbody id="managerOperationEditor">
+                <tr>
+                    <td class="disabled" id="managerOperationStudentNumber">0001</td>
+                    <td >
+                        <input type="text" name="limit" id="managerOperationClass" placeholder="A001">
+                    </td>
+                    <td class="disabled" id="managerOperationStudentName">小明</td>
+                    <td>
+                        <input type="text" name="limit" id="managerOperationLesson" placeholder="高数" />
+                    </td>
+                    <td>
+                        <input type="text" name="append" id="managerOperationNumber" placeholder="C0001" />
+                    </td>
+                    <td>
+                        <input type="text" name="defaultAppend" id="managerOperationCredit" placeholder="5" />
+                    </td>
+                    <td>
+                        <input type="text" name="append" id="managerOperationScore" placeholder="78" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="operation-box" id="ManagerOperation">
+            <button class="operation-confirm operationButton">确定</button>
+            <button class="operation-back operationButton">返回</button>
+        </div>
+
+    </div>
+</div>
+<!--底部-->
+<div class="footer">
+    Copyright@学生成绩管理系统
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/common.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

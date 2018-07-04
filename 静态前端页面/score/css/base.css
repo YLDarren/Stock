@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.clearfix:before , .clearfix:after {
+    content: "";
+    line-height: 0;
+    clear: both;
+    visibility: hidden;
+    display: block;
+}
+.hide {
+    display: none;
+}
+.disabled {
+    background-color: #e6e6e6;
+}
